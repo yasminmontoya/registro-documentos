@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 60);
             $table->integer('codigo');
-            $table->string('name', 4000);
+            $table->string('contenido', 4000);
             $table->foreignIdFor(Tipo::class,'tipo_id');
             $table->foreignIdFor(Proceso::class,'proceso_id');
             $table->timestamps();
