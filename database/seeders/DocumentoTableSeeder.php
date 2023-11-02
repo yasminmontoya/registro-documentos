@@ -19,7 +19,7 @@ class DocumentoTableSeeder extends Seeder
     {
         $documento = new Documento();
         $documento->nombre = "INSTRUCTIVO DE DESARROLLO";
-        $documento->codigo = "1";
+        $documento->codigo = "INS-ING-1";
         $documento->contenido = "CONTENIDO DEL DOCUMENTO";
         $documento->tipo_id = "1";
         $documento->proceso_id = "1";

@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 60);
-            $table->integer('codigo')->unique();
+            $table->string('codigo',150)->unique();
             $table->string('contenido', 4000);
             $table->foreignIdFor(Tipo::class,'tipo_id');
             $table->foreignIdFor(Proceso::class,'proceso_id');
