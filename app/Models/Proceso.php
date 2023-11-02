@@ -11,7 +11,6 @@ class Proceso extends Model
 
     protected $fillable = [
         'nombre',
-        'codigo',
-        'contenido'
+        'prefijo'
     ];
 }

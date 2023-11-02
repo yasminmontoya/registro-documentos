@@ -11,6 +11,7 @@ class Documento extends Model
 
     protected $fillable = [
         'nombre',
-        'prefijo'
+        'codigo',
+        'contenido'
     ];
 }
