@@ -8,9 +8,14 @@
                 <div class="card-header">{{ __('Documentos') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('danger'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('danger') }}
                         </div>
                     @endif
 
@@ -33,6 +38,13 @@
                                 <td>{{ $documento->codigo }}</td>
                                 <td>{{ $documento->tipo_id }}</td>
                                 <td>{{ $documento->proceso_id }}</td>
+                                <td>
+                                <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

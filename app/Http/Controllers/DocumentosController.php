@@ -81,6 +81,9 @@ class DocumentosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $documento=Documento::findOrFail($id);
+        $documento->delete();
+
+        return redirect('/documentos')->with('success','Documento Eliminado!');
     }
 }
