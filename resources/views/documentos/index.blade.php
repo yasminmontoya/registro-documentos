@@ -31,8 +31,8 @@
                                 <th scope="row">{{ $documento->id }}</th>
                                 <td>{{ $documento->nombre }}</td>
                                 <td>{{ $documento->codigo }}</td>
-                                <td>{{ $documento->idTipo }}</td>
-                                <td>{{ $documento->idProceso }}</td>
+                                <td>{{ $documento->tipo_id }}</td>
+                                <td>{{ $documento->proceso_id }}</td>
                             </tr>
                             @endforeach
                         </tbody>
