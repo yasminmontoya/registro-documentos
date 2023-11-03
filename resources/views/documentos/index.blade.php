@@ -42,6 +42,7 @@
                                 <td>{{ $documento->tipo_id }}</td>
                                 <td>{{ $documento->proceso_id }}</td>
                                 <td>
+                                <a href="{{ route('documentos.edit', $documento->id)}} " class="btn btn-warning btn-sm">Editar</a>
                                 <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf

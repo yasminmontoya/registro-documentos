@@ -6,6 +6,7 @@ use App\Models\Documento;
 use App\Models\Proceso;
 use App\Models\Tipo;
 use Illuminate\Http\Request;
+use League\CommonMark\Node\Block\Document;
 
 class DocumentosController extends Controller
 {
@@ -40,13 +41,13 @@ class DocumentosController extends Controller
      */
     public function store(Request $request)
     {
-        $documentos = new Documento();
-        $documentos->nombre=$request->nombre;
-        $documentos->codigo=$request->codigo;
-        $documentos->contenido=$request->contenido;
-        $documentos->tipo_id=$request->tipo;
-        $documentos->proceso_id=$request->proceso;
-        $documentos->save();
+        $documento = new Documento();
+        $documento->nombre=$request->nombre;
+        $documento->codigo=$request->codigo;
+        $documento->contenido=$request->contenido;
+        $documento->tipo_id=$request->tipo;
+        $documento->proceso_id=$request->proceso;
+        $documento->save();
 
         return back()->with('success', 'Documento Agregado');
     }
@@ -70,7 +71,10 @@ class DocumentosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $documento = Documento::findOrFail($id);
+        $tipos=Tipo::all();
+        $procesos=Proceso::all();
+        return view('documentos.edit', compact('documento','tipos','procesos'));
     }
 
     /**
@@ -82,7 +86,15 @@ class DocumentosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $documento = Documento::find($id);
+        $documento->nombre=$request->nombre;
+        $documento->codigo=$request->codigo;
+        $documento->contenido=$request->contenido;
+        $documento->tipo_id=$request->tipo;
+        $documento->proceso_id=$request->proceso;
+        $documento->save();
+
+        return back()->with('success', 'Documento editado');
     }
 
     /**
