@@ -31,10 +31,6 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" name="nombre" value="{{ $documento->nombre }}" required>
                 </div>
-                <!-- <div class="mb-3">
-                    <label for="codigo">Codigo</label>
-                    <input type="text" class="form-control" name="codigo" value="{{ $documento->codigo }}" required>
-                </div> -->
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
                     <textarea class="form-control" name="contenido" rows="6" required>{{ $documento->contenido }}</textarea>
