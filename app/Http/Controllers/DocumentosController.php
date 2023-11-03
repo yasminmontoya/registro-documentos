@@ -73,7 +73,10 @@ class DocumentosController extends Controller
      */
     public function show($id)
     {
-        //
+        $documento = Documento::findOrFail($id);
+        $tipos=Tipo::all();
+        $procesos=Proceso::all();
+        return view('documentos.show', compact('documento','tipos','procesos'));
     }
 
     /**

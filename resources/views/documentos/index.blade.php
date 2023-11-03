@@ -44,6 +44,7 @@
                                     <td>{{ $documento->proceso_id }}</td>
                                     <td>
                                         <div class="d-flex justify-content-between align-items-center">
+                                            <a href="{{ route('documentos.show', $documento->id)}} " class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>
                                             <a href="{{ route('documentos.edit', $documento->id)}} " class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                             <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
                                             @method('DELETE')
