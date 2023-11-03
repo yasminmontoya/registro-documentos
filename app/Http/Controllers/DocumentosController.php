@@ -6,7 +6,6 @@ use App\Models\Documento;
 use App\Models\Proceso;
 use App\Models\Tipo;
 use Illuminate\Http\Request;
-use League\CommonMark\Node\Block\Document;
 
 class DocumentosController extends Controller
 {
