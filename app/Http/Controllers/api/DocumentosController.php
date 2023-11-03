@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documento;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class DocumentosController extends Controller
@@ -16,7 +17,7 @@ class DocumentosController extends Controller
     public function index()
     {
         $documentos = Documento::all();
-        return $documentos;
+        return response()->json($documentos);
     }
 
     /**
@@ -38,7 +39,8 @@ class DocumentosController extends Controller
      */
     public function show($id)
     {
-        //
+        $documento = Documento::find($id);
+        return response()->json($documento);
     }
 
     /**
@@ -61,6 +63,15 @@ class DocumentosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response=[];
+        $documento = Documento::find($id);
+        if($documento){
+            $documento->delete();
+            array_push($response,['status'=>'success']);
+        }else{
+            array_push($response,['status'=>'error']);
+            array_push($response,['errors'=>'No existe el id']);
+        }
+        return response()->json($response);
     }
 }
