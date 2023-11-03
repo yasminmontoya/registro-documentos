@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documento;
-use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class DocumentosController extends Controller
@@ -28,7 +28,16 @@ class DocumentosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response=[];
+        $validate = $this->validator($request->all());
+        if(!is_array($validate)){
+            Documento::create($request->all());
+            array_push($response,['status'=>'success']);
+            return response()->json($response);
+        }else{
+            return response()->json($validate);
+        }
+
     }
 
     /**
@@ -52,7 +61,21 @@ class DocumentosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $response=[];
+        $validate = $this->validator($request->all());
+        if(!is_array($validate)){
+            $documento = Documento::find($id);
+            if($documento){
+                $documento->fill($request->all())->save();
+                array_push($response,['status'=>'success']);
+            }else{
+                array_push($response,['status'=>'error']);
+                array_push($response,['errors'=>'No existe el id']);
+            }
+            return response()->json($response);
+        }else{
+            return response()->json($validate);
+        }
     }
 
     /**
@@ -73,5 +96,30 @@ class DocumentosController extends Controller
             array_push($response,['errors'=>'No existe el id']);
         }
         return response()->json($response);
+    }
+
+    /**
+     * Get a validator for an incoming documento request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Http\Response
+     */
+    public function validator(array $data)
+    {
+        $response=[];
+        $validation = Validator::make($data, [
+            'nombre' => 'required|max:60',
+            'codigo' => 'required',
+            'contenido' => 'required|max:4000',
+            'tipo_id' => 'required',
+            'proceso_id' => 'required'
+        ]);
+
+        if($validation->fails()){
+            array_push($response,['status'=>'error']);
+            array_push($response,['errors'=>$validation->errors()]);
+        }else{
+            return true;
+        }
     }
 }
