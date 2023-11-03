@@ -52,6 +52,13 @@ class DocumentosController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|max:60',
+            'contenido' => 'required|max:4000',
+            'tipo' => 'required',
+            'proceso' => 'required'
+        ]);
+
         $tipo = Tipo::findOrFail($request->tipo);
         $proceso = Proceso::findOrFail($request->proceso);
         $id = Documento::latest('id')->first()->id + 1;

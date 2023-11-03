@@ -21,34 +21,38 @@
                 @endif
                 <form name="form" action="{{ route('documentos.store') }}" method="POST">
                 @csrf
-                @error('codigo')
+                @if($errors->any())
                     <div class="alert alert-danger">
-                        Ya existe un documento con ese codigo
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                @enderror
+                @endif
                 <div class="mb-3">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required>
+                    <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" >
                 </div>
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
-                    <textarea class="form-control" name="contenido" value="{{ old('contenido') }}" rows="6" required></textarea>
+                    <textarea class="form-control" name="contenido" rows="6" >{{ old('contenido') }}</textarea>
                 </div>
                 <div class="mb-3">
                     <label for="tipo">Tipo</label>
-                    <select class="form-select" name="tipo" required>
+                    <select class="form-select" name="tipo">
                         <option selected disabled value="">Selecciona un tipo</option>
                         @foreach($tipos as $tipo)
-                            <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
+                            <option value="{{ $tipo->id }}" {{ old('tipo') == $tipo->id ? 'selected' : '' }}>{{ $tipo->nombre }}</option>
                         @endforeach()
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="proceso">Proceso</label>
-                    <select class="form-select" name="proceso" required>
+                    <select class="form-select" name="proceso">
                         <option selected disabled value="">Selecciona un proceso</option>
                         @foreach($procesos as $proceso)
-                            <option value="{{ $proceso->id }}">{{ $proceso->nombre }}</option>
+                            <option value="{{ $proceso->id }}" {{ old('proceso') == $proceso->id ? 'selected' : '' }}>{{ $proceso->nombre }}</option>
                         @endforeach()
                     </select>
                 </div>
