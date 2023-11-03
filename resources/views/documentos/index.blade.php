@@ -40,8 +40,20 @@
                                     <th scope="row">{{ $documento->id }}</th>
                                     <td>{{ $documento->nombre }}</td>
                                     <td>{{ $documento->codigo }}</td>
-                                    <td>{{ $documento->tipo_id }}</td>
-                                    <td>{{ $documento->proceso_id }}</td>
+                                    <td>
+                                        @foreach($tipos as $tipo)
+                                            @if($tipo->id == $documento->tipo_id)
+                                            {{ $tipo->nombre }}
+                                            @endif
+                                        @endforeach()
+                                    </td>
+                                    <td>
+                                        @foreach($procesos as $proceso)
+                                            @if($proceso->id == $documento->proceso_id)
+                                                {{ $proceso->nombre }}
+                                            @endif
+                                        @endforeach()
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="{{ route('documentos.show', $documento->id)}} " class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>

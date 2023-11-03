@@ -27,7 +27,9 @@ class DocumentosController extends Controller
     public function index()
     {
         $documentos = Documento::all();
-        return view('documentos.index',compact('documentos'));
+        $tipos=Tipo::all();
+        $procesos=Proceso::all();
+        return view('documentos.index',compact('documentos','tipos','procesos'));
     }
 
     /**
