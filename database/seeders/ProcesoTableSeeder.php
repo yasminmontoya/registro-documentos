@@ -19,5 +19,25 @@ class ProcesoTableSeeder extends Seeder
         $proceso->nombre = "Ingenieria";
         $proceso->prefijo = "ING";
         $proceso->save();
+
+        $proceso = new Proceso();
+        $proceso->nombre = "Facturacion";
+        $proceso->prefijo = "FAC";
+        $proceso->save();
+
+        $proceso = new Proceso();
+        $proceso->nombre = "Contabilidad";
+        $proceso->prefijo = "CON";
+        $proceso->save();
+
+        $proceso = new Proceso();
+        $proceso->nombre = "Produccion";
+        $proceso->prefijo = "PRO";
+        $proceso->save();
+
+        $proceso = new Proceso();
+        $proceso->nombre = "Logistica";
+        $proceso->prefijo = "LOG";
+        $proceso->save();
     }
 }

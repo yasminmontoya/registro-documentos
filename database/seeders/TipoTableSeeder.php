@@ -19,5 +19,25 @@ class TipoTableSeeder extends Seeder
         $tipo->nombre = "Instructivo";
         $tipo->prefijo = "INS";
         $tipo->save();
+
+        $tipo = new Tipo();
+        $tipo->nombre = "Requerimiento";
+        $tipo->prefijo = "REQ";
+        $tipo->save();
+
+        $tipo = new Tipo();
+        $tipo->nombre = "Informe";
+        $tipo->prefijo = "INF";
+        $tipo->save();
+
+        $tipo = new Tipo();
+        $tipo->nombre = "Contrato";
+        $tipo->prefijo = "CON";
+        $tipo->save();
+
+        $tipo = new Tipo();
+        $tipo->nombre = "Politica";
+        $tipo->prefijo = "POL";
+        $tipo->save();
     }
 }
