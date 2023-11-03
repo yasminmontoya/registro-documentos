@@ -109,7 +109,7 @@ class DocumentosController extends Controller
         $response=[];
         $validation = Validator::make($data, [
             'nombre' => 'required|max:60',
-            'codigo' => 'required',
+            'codigo' => 'required|unique:documentos',
             'contenido' => 'required|max:4000',
             'tipo_id' => 'required',
             'proceso_id' => 'required'
@@ -118,6 +118,7 @@ class DocumentosController extends Controller
         if($validation->fails()){
             array_push($response,['status'=>'error']);
             array_push($response,['errors'=>$validation->errors()]);
+            return $response;
         }else{
             return true;
         }
