@@ -31,10 +31,10 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" name="nombre" value="{{ $documento->nombre }}" required>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="codigo">Codigo</label>
                     <input type="text" class="form-control" name="codigo" value="{{ $documento->codigo }}" required>
-                </div>
+                </div> -->
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
                     <textarea class="form-control" name="contenido" mb-3s="3" required>{{ $documento->contenido }}</textarea>
@@ -55,7 +55,7 @@
                     <label for="proceso">Proceso</label>
                     <select class="form-select" name="proceso">
                         @foreach($procesos as $proceso)
-                            @if($tipo->id == $documento->proceso_id)
+                            @if($proceso->id == $documento->proceso_id)
                                 <option value="{{ $proceso->id }}" selected>{{ $proceso->nombre }}</option>
                             @else
                                 <option value="{{ $proceso->id }}">{{ $proceso->nombre }}</option>

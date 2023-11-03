@@ -99,13 +99,12 @@ class DocumentosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'codigo' => 'unique:documentos'
-        ]);
+        $tipo = Tipo::findOrFail($request->tipo);
+        $proceso = Proceso::findOrFail($request->proceso);
 
         $documento = Documento::find($id);
         $documento->nombre=$request->nombre;
-        $documento->codigo=$request->codigo;
+        $documento->codigo=$tipo->prefijo . "-" . $proceso->prefijo . "-" . $id;
         $documento->contenido=$request->contenido;
         $documento->tipo_id=$request->tipo;
         $documento->proceso_id=$request->proceso;
