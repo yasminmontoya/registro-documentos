@@ -50,13 +50,13 @@ class DocumentosController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'codigo' => 'unique:documentos'
-        ]);
+        $tipo = Tipo::findOrFail($request->tipo);
+        $proceso = Proceso::findOrFail($request->proceso);
+        $id = Documento::latest('id')->first()->id + 1;
 
         $documento = new Documento();
         $documento->nombre=$request->nombre;
-        $documento->codigo=$request->codigo;
+        $documento->codigo=$tipo->prefijo . "-" . $proceso->prefijo . "-" . $id;
         $documento->contenido=$request->contenido;
         $documento->tipo_id=$request->tipo;
         $documento->proceso_id=$request->proceso;

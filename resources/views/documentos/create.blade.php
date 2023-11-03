@@ -30,10 +30,10 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="codigo">Codigo</label>
                     <input type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required>
-                </div>
+                </div> -->
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
                     <textarea class="form-control" name="contenido" value="{{ old('contenido') }}" mb-3s="3" required></textarea>
