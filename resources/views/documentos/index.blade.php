@@ -48,7 +48,7 @@
                                             <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este documento?')"><i class="bi bi-trash"></i></button>
                                             </form>
                                         </div>
                                     </td>
