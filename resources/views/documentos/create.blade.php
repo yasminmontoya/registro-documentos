@@ -24,7 +24,7 @@
                 @csrf
                 @error('codigo')
                     <div class="alert alert-danger">
-                        Ya existe un documento con ese codigo!
+                        Ya existe un documento con ese codigo
                     </div>
                 @enderror
                 <div class="mb-3">

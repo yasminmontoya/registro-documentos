@@ -41,6 +41,10 @@ class DocumentosController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'codigo' => 'unique:documentos'
+        ]);
+
         $documento = new Documento();
         $documento->nombre=$request->nombre;
         $documento->codigo=$request->codigo;
@@ -86,6 +90,10 @@ class DocumentosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'codigo' => 'unique:documentos'
+        ]);
+
         $documento = Documento::find($id);
         $documento->nombre=$request->nombre;
         $documento->codigo=$request->codigo;
