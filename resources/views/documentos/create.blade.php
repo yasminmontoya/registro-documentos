@@ -36,12 +36,12 @@
                 </div> -->
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
-                    <textarea class="form-control" name="contenido" value="{{ old('contenido') }}" mb-3s="3" required></textarea>
+                    <textarea class="form-control" name="contenido" value="{{ old('contenido') }}" rows="6" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="tipo">Tipo</label>
-                    <select class="form-select" name="tipo">
-                        <option selected>Selecciona un tipo</option>
+                    <select class="form-select" name="tipo" required>
+                        <option selected disabled value="">Selecciona un tipo</option>
                         @foreach($tipos as $tipo)
                             <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
                         @endforeach()
@@ -49,8 +49,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="proceso">Proceso</label>
-                    <select class="form-select" name="proceso">
-                        <option selected>Selecciona un proceso</option>
+                    <select class="form-select" name="proceso" required>
+                        <option selected disabled value="">Selecciona un proceso</option>
                         @foreach($procesos as $proceso)
                             <option value="{{ $proceso->id }}">{{ $proceso->nombre }}</option>
                         @endforeach()

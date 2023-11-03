@@ -37,7 +37,7 @@
                 </div> -->
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
-                    <textarea class="form-control" name="contenido" mb-3s="3" required>{{ $documento->contenido }}</textarea>
+                    <textarea class="form-control" name="contenido" rows="6" required>{{ $documento->contenido }}</textarea>
                 </div>
                 <div class="mb-3">
                     <label for="tipo">Tipo</label>
