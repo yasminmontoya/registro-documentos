@@ -111,6 +111,13 @@ class DocumentosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required|max:60',
+            'contenido' => 'required|max:4000',
+            'tipo' => 'required',
+            'proceso' => 'required'
+        ]);
+        
         $tipo = Tipo::findOrFail($request->tipo);
         $proceso = Proceso::findOrFail($request->proceso);
 

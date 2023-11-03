@@ -22,18 +22,22 @@
                 <form name="form" action="{{ route('documentos.update', $documento->id) }}" method="POST">
                 @method('PUT')
                 @csrf
-                @error('codigo')
+                @if($errors->any())
                     <div class="alert alert-danger">
-                        Ya existe un documento con ese codigo
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                @enderror
+                @endif
                 <div class="mb-3">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" value="{{ $documento->nombre }}" required>
+                    <input type="text" class="form-control" name="nombre" value="{{ $documento->nombre }}">
                 </div>
                 <div class="mb-3">
                     <label for="contenido">Contenido</label>
-                    <textarea class="form-control" name="contenido" rows="6" required>{{ $documento->contenido }}</textarea>
+                    <textarea class="form-control" name="contenido" rows="6">{{ $documento->contenido }}</textarea>
                 </div>
                 <div class="mb-3">
                     <label for="tipo">Tipo</label>
