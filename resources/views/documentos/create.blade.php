@@ -5,9 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Crear Documento</span>
-                    <a href="{{ route('documentos.index') }}" class="btn btn-primary btn-sm">Volver</a>
+                <div class="card-header">
+                    <a href="{{ route('documentos.index') }}" class="btn btn-primary btn-sm"><i class="bi bi-arrow-left"></i> Volver</a>
                 </div>
                 <div class="card-body">
                 @if(session('success'))
