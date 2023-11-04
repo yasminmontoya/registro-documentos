@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documento;
+use App\Models\Proceso;
+use App\Models\Tipo;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -29,9 +31,19 @@ class DocumentosController extends Controller
     public function store(Request $request)
     {
         $response=[];
+        $tipo = Tipo::find($request->tipo_id);
+        $proceso = Proceso::find($request->proceso_id);
+        $id = Documento::latest('id')->first()->id + 1;
+
         $validate = $this->validator($request->all());
         if(!is_array($validate)){
-            Documento::create($request->all());
+            Documento::create([
+                'nombre' => $request['nombre'],
+                'codigo' => $tipo->prefijo . "-" . $proceso->prefijo . "-" . $id,
+                'contenido' => $request['contenido'],
+                'tipo_id' => $request['tipo_id'],
+                'proceso_id' => $request['proceso_id'],
+            ]);
             array_push($response,['status'=>'success']);
             return response()->json($response);
         }else{
@@ -62,11 +74,20 @@ class DocumentosController extends Controller
     public function update(Request $request, $id)
     {
         $response=[];
+        $tipo = Tipo::find($request->tipo_id);
+        $proceso = Proceso::find($request->proceso_id);
+
         $validate = $this->validator($request->all());
         if(!is_array($validate)){
             $documento = Documento::find($id);
             if($documento){
-                $documento->fill($request->all())->save();
+                $documento->fill([
+                    'nombre' => $request['nombre'],
+                    'codigo' => $tipo->prefijo . "-" . $proceso->prefijo . "-" . $id,
+                    'contenido' => $request['contenido'],
+                    'tipo_id' => $request['tipo_id'],
+                    'proceso_id' => $request['proceso_id'],
+                ])->save();
                 array_push($response,['status'=>'success']);
             }else{
                 array_push($response,['status'=>'error']);
@@ -109,7 +130,6 @@ class DocumentosController extends Controller
         $response=[];
         $validation = Validator::make($data, [
             'nombre' => 'required|max:60',
-            'codigo' => 'required|unique:documentos',
             'contenido' => 'required|max:4000',
             'tipo_id' => 'required',
             'proceso_id' => 'required'
