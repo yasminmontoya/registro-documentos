@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('documentos', \App\Http\Controllers\api\DocumentosController::class);
+Route::resource('tipos', \App\Http\Controllers\api\TiposController::class);
+Route::resource('procesos', \App\Http\Controllers\api\ProcesosController::class);
