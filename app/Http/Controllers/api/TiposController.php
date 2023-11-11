@@ -38,7 +38,8 @@ class TiposController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipo = Tipo::find($id);
+        return response()->json($tipo);
     }
 
     /**

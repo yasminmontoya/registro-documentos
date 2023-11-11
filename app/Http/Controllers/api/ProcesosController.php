@@ -38,7 +38,8 @@ class ProcesosController extends Controller
      */
     public function show($id)
     {
-        //
+        $proceso = Proceso::find($id);
+        return response()->json($proceso);
     }
 
     /**
